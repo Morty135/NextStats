@@ -9,6 +9,8 @@ const app = express();
 const poolsData = {};
 let lastUpdate = 0;
 
+app.set('trust proxy', true);
+
 app.use(helmet());
 
 // rate limit
