@@ -27,7 +27,7 @@ app.use(limiter);
 async function fetchPools() {
     try {
         const response = await axios.get(
-            `${process.env.MININGCORE_BASE}/api/pools`,
+            `${process.env.MININGCORE_BASE}/pools`,
             { timeout: 5000 }
         );
         return response.data.pools;
@@ -82,7 +82,7 @@ async function formatData() {
 
 
 
-app.get('/api/pools/:poolId', async (req, res) => {
+app.get('/pools/:poolId', async (req, res) => {
     await formatData();
 
     const pool = poolsData[req.params.poolId];
@@ -96,7 +96,7 @@ app.get('/api/pools/:poolId', async (req, res) => {
 
 
 
-app.get('/api/pools', async (req, res) => {
+app.get('/pools', async (req, res) => {
     await formatData();
 
     const pools = Object.keys(poolsData);
@@ -106,7 +106,7 @@ app.get('/api/pools', async (req, res) => {
 
 
 
-app.get('/api/help', async (req, res) => {
+app.get('/help', async (req, res) => {
     const help = {
         "endpoints": [
             {
